@@ -4291,6 +4291,15 @@ databaseChangeLog:
               column:
                 name: user_id
 
+  - changeSet:
+      id: v49.00-007
+      author: johnswanson
+      comment: Set the `type` of the internal user
+      changes:
+        - sql:
+            sql: UPDATE core_user SET type='internal' WHERE id=13371338;
+      rollback: # not necessary
+
   # >>>>>>>>>> DO NOT ADD NEW MIGRATIONS BELOW THIS LINE! ADD THEM ABOVE <<<<<<<<<<
 
 
