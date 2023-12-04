@@ -7,6 +7,7 @@ import type {
   MetadataProvider,
   MetricMetadata,
   Query,
+  SegmentMetadata,
 } from "./types";
 import type LegacyMetadata from "./metadata/Metadata";
 
@@ -54,7 +55,7 @@ export function replaceClause(
   query: Query,
   stageIndex: number,
   targetClause: Clause | Join,
-  newClause: Clause | ColumnMetadata | MetricMetadata | Join,
+  newClause: Clause | ColumnMetadata | MetricMetadata | SegmentMetadata | Join,
 ): Query {
   return ML.replace_clause(query, stageIndex, targetClause, newClause);
 }
