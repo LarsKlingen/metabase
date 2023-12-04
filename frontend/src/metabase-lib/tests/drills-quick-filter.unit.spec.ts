@@ -104,6 +104,7 @@ describe("drill-thru/quick-filter", () => {
         drillType,
       );
       expect(drillInfo).toMatchObject({
+        value: "text",
         operators: ["contains", "does-not-contain"],
       });
       verifyDrillThruDetails(drill, expectedStageCount);
