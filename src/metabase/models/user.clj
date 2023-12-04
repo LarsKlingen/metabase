@@ -56,7 +56,7 @@
    :type             mi/transform-keyword})
 
 (def ^:private allowed-user-types
-  #{:internal :personal})
+  #{:internal :personal :api-key})
 
 (def ^:private insert-default-values
   {:date_joined  :%now
