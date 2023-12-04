@@ -51,7 +51,7 @@ describe("drill-thru/sort", () => {
   );
 
   it.each<Lib.OrderByDirection>(["asc", "desc"])(
-    'should thru a column header from a sorted query with "%s" direction',
+    'should drill thru a column header from a sorted query with "%s" direction',
     direction => {
       const query = createQueryWithClauses({
         orderBys: [
@@ -117,7 +117,7 @@ describe("drill-thru/sort", () => {
     expect(drill).toBeNull();
   });
 
-  it("should not drill thru a JSON column", () => {
+  it("should not drill thru a Structured column", () => {
     const metadata = createMockMetadata({
       databases: [
         createSampleDatabase({

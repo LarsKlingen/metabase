@@ -254,7 +254,7 @@ describe.skip("drill-thru/pivot (metabase#33559)", () => {
       ],
     });
 
-    it("should drill not thru an aggregated cell", () => {
+    it("should not drill thru an aggregated cell", () => {
       const drill = queryDrillThru(query, stageIndex, clickObject, drillType);
       expect(drill).toBeNull();
     });

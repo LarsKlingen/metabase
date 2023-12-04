@@ -101,7 +101,7 @@ describe("drill-thru/summarize-column-by-time", () => {
     expect(drill).toBeNull();
   });
 
-  it("should not drill thru a JSON column", () => {
+  it("should not drill thru a Structured column", () => {
     const metadata = createMockMetadata({
       databases: [
         createSampleDatabase({
