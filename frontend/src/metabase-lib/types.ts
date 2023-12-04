@@ -224,9 +224,6 @@ export type ExpressionOptions = {
   "include-current"?: boolean;
 };
 
-declare const FilterOperator: unique symbol;
-export type FilterOperator = unknown & { _opaque: typeof FilterOperator };
-
 export type FilterOperatorName =
   | StringFilterOperatorName
   | NumberFilterOperatorName
