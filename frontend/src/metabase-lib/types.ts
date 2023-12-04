@@ -57,9 +57,6 @@ export type OrderByDirection = "asc" | "desc";
 declare const FilterClause: unique symbol;
 export type FilterClause = unknown & { _opaque: typeof FilterClause };
 
-declare const FilterOperator: unique symbol;
-export type FilterOperator = unknown & { _opaque: typeof FilterOperator };
-
 declare const Join: unique symbol;
 export type Join = unknown & { _opaque: typeof Join };
 
@@ -223,6 +220,9 @@ export type ExpressionOptions = {
   "case-sensitive"?: boolean;
   "include-current"?: boolean;
 };
+
+declare const FilterOperator: unique symbol;
+export type FilterOperator = unknown & { _opaque: typeof FilterOperator };
 
 export type FilterOperatorName =
   | StringFilterOperatorName
@@ -460,8 +460,8 @@ export type DrillThruDisplayInfo =
 
 export type FilterDrillDetails = {
   query: Query;
-  column: ColumnMetadata;
   stageIndex: number;
+  column: ColumnMetadata;
 };
 
 export type PivotType = "category" | "location" | "time";
