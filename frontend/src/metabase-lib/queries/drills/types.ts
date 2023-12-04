@@ -1,6 +1,7 @@
 import type { VisualizationSettings } from "metabase-types/api";
 import type Question from "metabase-lib/Question";
 import type { ClickObject } from "metabase-lib/types";
+
 export type {
   ClickObject,
   ClickObjectDataRow,
@@ -13,5 +14,3 @@ export type ClickActionProps = {
   settings?: VisualizationSettings;
   extraData?: Record<string, any>;
 };
-
-export type DrillProps = Pick<ClickActionProps, "question" | "clicked">;
