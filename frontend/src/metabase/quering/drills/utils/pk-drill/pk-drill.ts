@@ -4,10 +4,10 @@ import type * as Lib from "metabase-lib";
 
 export const pkDrill: Drill<Lib.PKDrillThruInfo> = ({
   drill,
-  drillDisplayInfo,
+  drillInfo,
   applyDrill,
 }) => {
-  const { objectId } = drillDisplayInfo;
+  const { objectId } = drillInfo;
 
   return [
     {
