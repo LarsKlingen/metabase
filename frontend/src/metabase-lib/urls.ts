@@ -89,14 +89,18 @@ export function getUrlWithParameters(
   });
 }
 
-export function getAutomaticDashboardUrl(question: Question) {
+export function getAutomaticDashboardUrl(
+  question: Question,
+  questionWithFilters: Question,
+) {
   const questionId = question.id();
-  const query = question.datasetQuery();
-  const filter = query.type === "query" ? query.query.filter : null;
+  const filterQuery = questionWithFilters.datasetQuery();
+  const filter = filterQuery.type === "query" ? filterQuery.query.filter : null;
   const cellQuery = filter
     ? `/cell/${utf8_to_b64url(JSON.stringify(filter))}`
     : "";
 
+  const query = question.datasetQuery();
   if (questionId != null && !isTransientId(questionId)) {
     return `auto/dashboard/question/${questionId}${cellQuery}`;
   } else {
@@ -105,15 +109,19 @@ export function getAutomaticDashboardUrl(question: Question) {
   }
 }
 
-export function getComparisonDashboardUrl(question: Question) {
+export function getComparisonDashboardUrl(
+  question: Question,
+  questionWithFilters: Question,
+) {
   const questionId = question.id();
   const tableId = question.tableId();
-  const query = question.datasetQuery();
-  const filter = query.type === "query" ? query.query.filter : null;
+  const filterQuery = questionWithFilters.datasetQuery();
+  const filter = filterQuery.type === "query" ? filterQuery.query.filter : null;
   const cellQuery = filter
     ? `/cell/${utf8_to_b64url(JSON.stringify(filter))}`
     : "";
 
+  const query = question.datasetQuery();
   if (questionId != null && !isTransientId(questionId)) {
     return `auto/dashboard/question/${questionId}${cellQuery}/compare/table/${tableId}`;
   } else {

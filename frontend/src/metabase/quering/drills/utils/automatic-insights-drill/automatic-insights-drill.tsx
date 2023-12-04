@@ -10,7 +10,11 @@ import {
   getComparisonDashboardUrl,
 } from "metabase-lib/urls";
 
-export const automaticInsightsDrill: Drill = ({ drill, applyDrill }) => {
+export const automaticInsightsDrill: Drill = ({
+  question,
+  drill,
+  applyDrill,
+}) => {
   const actions: RegularClickAction[] = [
     {
       name: "exploratory-dashboard",
@@ -18,7 +22,7 @@ export const automaticInsightsDrill: Drill = ({ drill, applyDrill }) => {
       section: "auto-popover",
       icon: "bolt",
       buttonType: "horizontal",
-      url: () => getAutomaticDashboardUrl(applyDrill(drill)),
+      url: () => getAutomaticDashboardUrl(question, applyDrill(drill)),
     },
     {
       name: "compare-dashboard",
@@ -26,7 +30,7 @@ export const automaticInsightsDrill: Drill = ({ drill, applyDrill }) => {
       section: "auto-popover",
       icon: "segment",
       buttonType: "horizontal",
-      url: () => getComparisonDashboardUrl(applyDrill(drill)),
+      url: () => getComparisonDashboardUrl(question, applyDrill(drill)),
     },
   ];
 

@@ -34,7 +34,7 @@ export function automaticDashboardDrillUrl({
     .question()
     .drillUnderlyingRecords(dimensions);
 
-  return ML_Urls.getAutomaticDashboardUrl(nextQuestion);
+  return ML_Urls.getAutomaticDashboardUrl(question, nextQuestion);
 }
 
 export function compareToRestDrillUrl({ question, clicked }: ClickActionProps) {
@@ -46,5 +46,5 @@ export function compareToRestDrillUrl({ question, clicked }: ClickActionProps) {
     .question()
     .drillUnderlyingRecords(dimensions);
 
-  return ML_Urls.getComparisonDashboardUrl(nextQuestion);
+  return ML_Urls.getComparisonDashboardUrl(question, nextQuestion);
 }
