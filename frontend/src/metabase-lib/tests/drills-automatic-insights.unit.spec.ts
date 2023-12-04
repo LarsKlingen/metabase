@@ -22,8 +22,7 @@ import {
   createNotEditableQuery,
 } from "./drills-common";
 
-// eslint-disable-next-line jest/no-disabled-tests
-describe.skip("drill-thru/automatic-insights (metabase#33558)", () => {
+describe("drill-thru/automatic-insights (metabase#33558)", () => {
   const drillType = "drill-thru/automatic-insights";
   const stageIndex = 0;
   const metadataWithXraysEnabled = createMockMetadata(
@@ -156,7 +155,9 @@ describe.skip("drill-thru/automatic-insights (metabase#33558)", () => {
         drillType,
       );
       const newQuery = Lib.drillThru(query, stageIndex, drill);
-      expect(Lib.filters(newQuery, stageIndex)).toBeGreaterThanOrEqual(1);
+      expect(Lib.filters(newQuery, stageIndex).length).toBeGreaterThanOrEqual(
+        1,
+      );
     });
 
     it("should drill thru a pivot cell", () => {
@@ -168,7 +169,9 @@ describe.skip("drill-thru/automatic-insights (metabase#33558)", () => {
         drillType,
       );
       const newQuery = Lib.drillThru(query, stageIndex, drill);
-      expect(Lib.filters(newQuery, stageIndex)).toBeGreaterThanOrEqual(1);
+      expect(Lib.filters(newQuery, stageIndex).length).toBeGreaterThanOrEqual(
+        1,
+      );
     });
 
     it("should drill thru a legend item", () => {
@@ -180,7 +183,9 @@ describe.skip("drill-thru/automatic-insights (metabase#33558)", () => {
         drillType,
       );
       const newQuery = Lib.drillThru(query, stageIndex, drill);
-      expect(Lib.filters(newQuery, stageIndex)).toBeGreaterThanOrEqual(1);
+      expect(Lib.filters(newQuery, stageIndex).length).toBeGreaterThanOrEqual(
+        1,
+      );
     });
   });
 });
