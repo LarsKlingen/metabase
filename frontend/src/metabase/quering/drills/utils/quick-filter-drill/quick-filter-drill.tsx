@@ -14,11 +14,7 @@ export const quickFilterDrill: Drill<Lib.QuickFilterDrillThruInfo> = ({
   applyDrill,
 }) => {
   const { value, operators } = drillInfo;
-  const {
-    query,
-    stageNumber: stageIndex,
-    column,
-  } = Lib.filterDrillDetails(drill);
+  const { query, stageIndex, column } = Lib.filterDrillDetails(drill);
 
   return operators.map(operator => ({
     name: operator,

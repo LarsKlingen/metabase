@@ -461,7 +461,7 @@ export type DrillThruDisplayInfo =
 export type FilterDrillDetails = {
   query: Query;
   column: ColumnMetadata;
-  stageNumber: number;
+  stageIndex: number;
 };
 
 export type PivotType = "category" | "location" | "time";

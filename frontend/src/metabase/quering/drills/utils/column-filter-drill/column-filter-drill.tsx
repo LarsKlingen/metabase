@@ -7,11 +7,7 @@ export const columnFilterDrill: Drill<Lib.ColumnFilterDrillThruInfo> = ({
   question,
   drill,
 }) => {
-  const {
-    query,
-    column,
-    stageNumber: stageIndex,
-  } = Lib.filterDrillDetails(drill);
+  const { query, column, stageIndex } = Lib.filterDrillDetails(drill);
 
   return [
     {
