@@ -38,7 +38,7 @@ describe("drill-thru/column-filter", () => {
         clickObject,
         drillType,
       );
-      expect(drill).toBeDefined();
+      expect(drill).not.toBeNull();
       verifyDrillThruDetails(drill, expectedStageCount);
     });
 
@@ -114,7 +114,7 @@ describe("drill-thru/column-filter", () => {
         clickObject,
         drillType,
       );
-      expect(drill).toBeDefined();
+      expect(drill).not.toBeNull();
       verifyDrillThruDetails(drill, expectedStageCount);
     });
   });

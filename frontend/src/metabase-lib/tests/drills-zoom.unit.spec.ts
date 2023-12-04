@@ -42,7 +42,7 @@ describe("drill-thru/zoom", () => {
       drillType,
     );
     const newQuery = Lib.drillThru(defaultQuery, stageIndex, drill);
-    expect(newQuery).toBeDefined();
+    expect(newQuery).not.toBeNull();
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
