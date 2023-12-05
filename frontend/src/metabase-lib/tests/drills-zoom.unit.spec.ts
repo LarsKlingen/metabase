@@ -1,4 +1,5 @@
 import {
+  createOrdersCreatedAtDatasetColumn,
   createOrdersIdDatasetColumn,
   createOrdersIdField,
   createOrdersProductIdDatasetColumn,
@@ -46,10 +47,28 @@ describe("drill-thru/zoom", () => {
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should drill thru a non-PK or non-FK cell when there is another PK and no other PK columns exist (metabase#36129)", () => {
+  it("should drill thru a non-PK or non-FK cell when there is another PK and no other PK columns exist (metabase#36129)", () => {
     const clickObject = createRawCellClickObject({
       column: createOrdersTotalDatasetColumn(),
       value: 10,
+      data: [
+        {
+          col: createOrdersIdDatasetColumn(),
+          value: 1,
+        },
+        {
+          col: createOrdersProductIdDatasetColumn({ semantic_type: "type/PK" }),
+          value: 2,
+        },
+        {
+          col: createOrdersTotalDatasetColumn(),
+          value: 10,
+        },
+        {
+          col: createOrdersCreatedAtDatasetColumn(),
+          value: "2020-01-01",
+        },
+      ],
     });
     const { drillInfo } = findDrillThru(
       defaultQuery,
