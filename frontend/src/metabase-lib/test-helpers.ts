@@ -260,13 +260,14 @@ export function createColumnClickObject({
 interface RawCellClickObjectOpts {
   column: DatasetColumn;
   value: RowValue;
+  data?: Lib.ClickObjectDataRow[];
 }
 
 export function createRawCellClickObject({
   column,
   value,
+  data = [{ col: column, value }],
 }: RawCellClickObjectOpts): Lib.ClickObject {
-  const data = [{ col: column, value }];
   return { column, value, data };
 }
 

@@ -1,4 +1,6 @@
 import {
+  createOrdersCreatedAtDatasetColumn,
+  createOrdersCreatedAtField,
   createOrdersIdDatasetColumn,
   createOrdersIdField,
   createOrdersProductIdDatasetColumn,
@@ -35,6 +37,7 @@ describe("drill-thru/pk", () => {
               createOrdersIdField(),
               createOrdersProductIdField({ semantic_type: "type/PK" }),
               createOrdersTotalField(),
+              createOrdersCreatedAtField(),
             ],
           }),
         ],
@@ -65,6 +68,24 @@ describe("drill-thru/pk", () => {
     const clickObject = createRawCellClickObject({
       column: createOrdersTotalDatasetColumn(),
       value: 10,
+      data: [
+        {
+          col: createOrdersIdDatasetColumn(),
+          value: 1,
+        },
+        {
+          col: createOrdersProductIdDatasetColumn({ semantic_type: "type/PK" }),
+          value: 2,
+        },
+        {
+          col: createOrdersTotalDatasetColumn(),
+          value: 10,
+        },
+        {
+          col: createOrdersCreatedAtDatasetColumn(),
+          value: "2020-01-01",
+        },
+      ],
     });
     const { drill } = findDrillThru(
       defaultQuery,
