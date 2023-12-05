@@ -152,7 +152,7 @@ describe("drill-thru/pk", () => {
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should not drill thru a PK cell with null value (metabase#36126)", () => {
+  it("should not drill thru a PK cell with null value (metabase#36126)", () => {
     const clickObject = createRawCellClickObject({
       column: defaultColumn,
       value: null,
