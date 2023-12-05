@@ -70,7 +70,7 @@ describe("drill-thru/distribution", () => {
     });
 
     // eslint-disable-next-line jest/no-disabled-tests
-    it.skip("should drill thru a text column (metabase#36124)", () => {
+    it("should drill thru a text column (metabase#36124)", () => {
       const query = Lib.withDifferentTable(defaultQuery, PRODUCTS_ID);
       const clickObject = createColumnClickObject({
         column: createProductsCategoryDatasetColumn(),
