@@ -94,8 +94,7 @@ describe("drill-thru/underlying-records", () => {
     expect(Lib.filters(newQuery, stageIndex)).toHaveLength(1);
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should drill thru a legend item (metabase#35343)", () => {
+  it("should drill thru a legend item (metabase#35343)", () => {
     const query = createQueryWithClauses({
       aggregations: [{ operatorName: "count" }],
       breakouts: [
