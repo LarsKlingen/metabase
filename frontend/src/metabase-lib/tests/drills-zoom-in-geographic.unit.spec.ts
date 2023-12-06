@@ -2,9 +2,7 @@ import {
   createOrdersTable,
   createPeopleCityDatasetColumn,
   createPeopleIdField,
-  createPeopleLatitudeDatasetColumn,
   createPeopleLatitudeField,
-  createPeopleLongitudeDatasetColumn,
   createPeopleLongitudeField,
   createPeopleStateDatasetColumn,
   createPeopleStateField,
@@ -15,6 +13,7 @@ import {
 import { createMockMetadata } from "__support__/metadata";
 import * as Lib from "metabase-lib";
 import {
+  columnFinder,
   createAggregatedCellClickObject,
   createPivotCellClickObject,
   createQuery,
@@ -62,7 +61,12 @@ describe.skip("drill-thru/zoom-in.geographic (metabase#36247)", () => {
     );
   });
 
-  describe("Country -> State", () => {
+  // No one can remember ever seeing Country => State work in the old MLv1 code, so we made a concious decision not to
+  // port it. If we ever want to add it again we can re-enable this test. See this thread for more info.
+  // https://metaboat.slack.com/archives/C04CYTEL9N2/p1701826072570649 -- Cam
+  //
+  // eslint-disable-next-line jest/no-disabled-tests
+  describe.skip("Country -> State", () => {
     const metadata = createMockMetadata({
       databases: [
         createSampleDatabase({
@@ -128,10 +132,11 @@ describe.skip("drill-thru/zoom-in.geographic (metabase#36247)", () => {
     });
 
     it("should drill thru an aggregated cell and use LatLon columns if State isn't available", () => {
-      const query = Lib.withDifferentTable(
-        createQuery({ metadata }),
-        PEOPLE_ID,
-      );
+      const query = createQueryWithClauses({
+        query: Lib.withDifferentTable(createQuery({ metadata }), PEOPLE_ID),
+        aggregations: [{ operatorName: "count" }],
+        breakouts: [{ columnName: "COUNTRY", tableName: "PEOPLE" }],
+      });
       const clickObject = createAggregatedCellClickObject({
         aggregation: { column: createCountDatasetColumn(), value: 5 },
         breakouts: [
@@ -172,15 +177,26 @@ describe.skip("drill-thru/zoom-in.geographic (metabase#36247)", () => {
           },
         ],
       });
+
+      const returnedColumns = Lib.returnedColumns(query, -1);
+      const latitudeColumn = columnFinder(query, returnedColumns)(
+        "PEOPLE",
+        "LATITUDE",
+      );
+      const longitudeColumn = columnFinder(query, returnedColumns)(
+        "PEOPLE",
+        "LONGITUDE",
+      );
+
       const dimensions = {
         aggregation: { column: createCountDatasetColumn(), value: 5 },
         breakouts: [
           {
-            column: createPeopleLatitudeDatasetColumn({ source: "breakout" }),
+            column: latitudeColumn,
             value: 10,
           },
           {
-            column: createPeopleLongitudeDatasetColumn({ source: "breakout" }),
+            column: longitudeColumn,
             value: 20,
           },
         ],
