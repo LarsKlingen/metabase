@@ -4,6 +4,7 @@ import {
 } from "metabase-types/api/mocks/presets";
 import * as Lib from "metabase-lib";
 import {
+  columnFinder,
   createAggregatedCellClickObject,
   createColumnClickObject,
   findDrillThru,
@@ -54,6 +55,15 @@ describe.skip("drill-thru/zoom-in.binning (metabase#36177)", () => {
             },
           ],
         });
+
+        // make sure we're using the actual breakout column metadata as returned by MLv2 for the query, because if
+        // it's missing breakout metadata it won't work. See
+        // https://metaboat.slack.com/archives/C04CYTEL9N2/p1701818572333229 -- Cam
+        const returnedColumns = Lib.returnedColumns(query, -1);
+        const actualBreakoutColumn =
+          breakoutColumn &&
+          columnFinder(query, returnedColumns)(tableName, breakoutColumn.name);
+
         const clickObject = createAggregatedCellClickObject({
           aggregation: {
             column: aggregationColumn,
@@ -61,7 +71,7 @@ describe.skip("drill-thru/zoom-in.binning (metabase#36177)", () => {
           },
           breakouts: [
             {
-              column: breakoutColumn,
+              column: actualBreakoutColumn,
               value: 20,
             },
           ],
