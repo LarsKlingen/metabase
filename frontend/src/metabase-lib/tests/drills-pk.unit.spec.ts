@@ -64,7 +64,7 @@ describe("drill-thru/pk", () => {
   });
 
   // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should drill thru a non-PK and non-FK cell when there are multiple PK columns (metabase#35618)", () => {
+  it("should drill thru a non-PK and non-FK cell when there are multiple PK columns (metabase#35618)", () => {
     const clickObject = createRawCellClickObject({
       column: createOrdersTotalDatasetColumn(),
       value: 10,
@@ -94,7 +94,7 @@ describe("drill-thru/pk", () => {
       drillType,
     );
     const newQuery = Lib.drillThru(defaultQuery, stageIndex, drill);
-    expect(Lib.filters(newQuery, stageIndex)).toHaveLength(1);
+    expect(Lib.filters(newQuery, stageIndex)).toHaveLength(2);
   });
 
   it("should not drill thru a non-PK and non-FK cell when the query is aggregated", () => {
