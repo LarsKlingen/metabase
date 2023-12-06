@@ -116,8 +116,7 @@ describe("drill-thru/underlying-records", () => {
     expect(Lib.filters(newQuery, stageIndex)).toHaveLength(1);
   });
 
-  // eslint-disable-next-line jest/no-disabled-tests
-  it.skip("should use the default row count for aggregations with negative values (metabase#36143)", () => {
+  it("should use the default row count for aggregations with negative values (metabase#36143)", () => {
     const clickObject = createAggregatedCellClickObject({
       aggregation: {
         column: aggregationColumn,
