@@ -442,7 +442,7 @@
         :when              (and a-segment (= (:table-id a-segment) table-id))]
     a-segment))
 
-(defn- setting [setting-key unparsed-metadata]
+(defn- setting [setting-key ^js unparsed-metadata]
   (-> unparsed-metadata
     (object-get "settings")
     (object-get (name setting-key))))
