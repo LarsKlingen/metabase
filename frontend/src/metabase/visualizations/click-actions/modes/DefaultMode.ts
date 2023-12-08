@@ -1,3 +1,4 @@
+import { TimeseriesChrome } from "metabase/querying";
 import type { QueryClickActionsMode } from "../../types";
 import { ColumnFormattingAction } from "../actions/ColumnFormattingAction";
 import { HideColumnAction } from "../actions/HideColumnAction";
@@ -11,4 +12,5 @@ export const DefaultMode: QueryClickActionsMode = {
     ColumnFormattingAction,
     DashboardClickAction,
   ],
+  ModeFooter: TimeseriesChrome,
 };
