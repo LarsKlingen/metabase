@@ -577,7 +577,7 @@ describe("scenarios > question > custom column", () => {
 
     popover().within(() => {
       cy.findByText("Filter by this column").click();
-      cy.findByText("Specific dates...").click();
+      cy.findByText("Specific dates…").click();
       enterDateFilter("12/10/2024", 0);
       enterDateFilter("01/05/2025", 1);
       cy.button("Add filter").click();
