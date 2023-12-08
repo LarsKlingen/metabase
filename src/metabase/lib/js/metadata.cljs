@@ -444,7 +444,7 @@
 
 (defn- setting [setting-key unparsed-metadata]
   (-> unparsed-metadata
-    (.-settings)
+    (object-get "settings")
     (object-get (name setting-key))))
 
 (defn metadata-provider
