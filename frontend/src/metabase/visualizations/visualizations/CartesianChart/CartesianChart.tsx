@@ -15,6 +15,11 @@ import {
 } from "metabase/visualizations/visualizations/CartesianChart/CartesianChart.styled";
 import LegendCaption from "metabase/visualizations/components/legend/LegendCaption";
 import { getLegendItems } from "metabase/visualizations/echarts/cartesian/model/legend";
+import type { EChartsEventHandler } from "metabase/visualizations/types/echarts";
+import {
+  getDataFromEChartsEvent,
+  getDimensionsFromECharts,
+} from "metabase/visualizations/visualizations/CartesianChart/utils";
 
 export function CartesianChart({
   rawSeries,
@@ -27,6 +32,8 @@ export function CartesianChart({
   actionButtons,
   isQueryBuilder,
   isFullscreen,
+  onHoverChange,
+  onVisualizationClick,
 }: VisualizationProps) {
   const hasTitle = showTitle && settings["card.title"];
   const title = settings["card.title"] || card.name;
@@ -55,6 +62,48 @@ export function CartesianChart({
     [chartModel, renderingContext, settings],
   );
 
+  const eventHandlers: EChartsEventHandler[] = [
+    {
+      eventName: "mouseout",
+      handler: () => {
+        onHoverChange?.(null);
+      },
+    },
+    {
+      eventName: "mousemove",
+      handler: event => {
+        const data = getDataFromEChartsEvent(event, chartModel);
+        onHoverChange?.({
+          settings,
+          index: 0,
+          event: event.event.event,
+          data,
+        });
+      },
+    },
+    {
+      eventName: "click",
+      handler: event => {
+        const { dataIndex, seriesIndex } = event;
+
+        const datum = chartModel.dataset[dataIndex];
+
+        const data = getDataFromEChartsEvent(event, chartModel);
+        const dimensions = getDimensionsFromECharts(event, chartModel);
+        const column = chartModel.seriesModels[seriesIndex].column;
+
+        onVisualizationClick?.({
+          event: event.event.event,
+          value: datum[chartModel.dimensionModel.dataKey],
+          column,
+          data,
+          dimensions,
+          settings,
+        });
+      },
+    },
+  ];
+
   return (
     <CartesianChartRoot>
       {hasTitle && (
@@ -74,7 +123,7 @@ export function CartesianChart({
         isFullscreen={isFullscreen}
         isQueryBuilder={isQueryBuilder}
       >
-        <CartesianChartRenderer option={option} />
+        <CartesianChartRenderer option={option} eventHandlers={eventHandlers} />
       </CartesianChartLegendLayout>
     </CartesianChartRoot>
   );

@@ -14,6 +14,7 @@ import {
 import type { CartesianChartColumns } from "metabase/visualizations/lib/graph/columns";
 import { getCartesianChartColumns } from "metabase/visualizations/lib/graph/columns";
 import {
+  getCardsColumnByDataKeyMap,
   getDatasetExtents,
   getJoinedCardsDataset,
   getSortedSeriesModels,
@@ -72,6 +73,8 @@ export const getCartesianChartModel = (
 ): CartesianChartModel => {
   const cardsColumns = getCardsColumns(rawSeries, settings);
 
+  const columnByDataKey = getCardsColumnByDataKeyMap(rawSeries, cardsColumns);
+
   const dimensionModel = getDimensionModel(rawSeries, cardsColumns);
   const unsortedSeriesModels = getCardsSeriesModels(
     rawSeries,
@@ -117,6 +120,7 @@ export const getCartesianChartModel = (
     dataset,
     transformedDataset,
     seriesModels,
+    columnByDataKey,
     dimensionModel,
     yAxisSplit,
     leftAxisColumn,
