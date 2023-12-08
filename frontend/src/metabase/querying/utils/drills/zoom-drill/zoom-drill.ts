@@ -23,7 +23,7 @@ export const zoomDrill: Drill<Lib.ZoomDrillThruInfo> = ({
       ...(dashboard
         ? { question: () => applyDrill(drill, objectId) }
         : { action: () => zoomInRow({ objectId }) }),
-      ...(isManyPks ? { extra: () => ({ objectId }) } : {}),
+      ...(!isManyPks ? { extra: () => ({ objectId }) } : {}),
     },
   ];
 };

@@ -124,7 +124,7 @@ export const dashboardParametersContainer = () => {
 };
 
 export const undoToast = () => {
-  return undoToastList().first();
+  return cy.findByTestId("toast-undo");
 };
 
 export const undoToastList = () => {
