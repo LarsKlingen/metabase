@@ -1,6 +1,9 @@
 {:locales
  #{"nl"
    "en"
+   "sq"
+   "lv"
+   "ar-SA"
    "zh"
    "sr"
    "tr"
@@ -11,11 +14,13 @@
    "id"
    "uk"
    "pl"
+   "fi"
    "ca"
    "sv"
    "zh-HK"
    "fr"
    "pt-BR"
+   "zh-CN"
    "de"
    "nb"
    "ru"
@@ -23,6 +28,8 @@
    "es"
    "ja"
    "cs"
-   "bg"},
+   "ar"
+   "bg"
+   "ko"},
  :packages ["metabase"],
  :bundle "metabase.Messages"}
