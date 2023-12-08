@@ -445,7 +445,7 @@
 (defn- setting [setting-key unparsed-metadata]
   (-> unparsed-metadata
     (.-settings)
-    (aget (name setting-key))))
+    (object-get (name setting-key))))
 
 (defn metadata-provider
   "Use a `metabase-lib/metadata/Metadata` as a [[metabase.lib.metadata.protocols/MetadataProvider]]."
