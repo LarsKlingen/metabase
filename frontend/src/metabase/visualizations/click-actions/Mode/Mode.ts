@@ -1,4 +1,4 @@
-import { queryDrill } from "metabase/quering/drills/utils/query-drill";
+import { queryDrill } from "metabase/querying";
 import type Question from "metabase-lib/Question";
 import type {
   ClickAction,
