@@ -124,7 +124,11 @@ export const dashboardParametersContainer = () => {
 };
 
 export const undoToast = () => {
-  return cy.findByTestId("toast-undo");
+  return undoToastList().first();
+};
+
+export const undoToastList = () => {
+  return cy.findAllByTestId("toast-undo");
 };
 
 export function dashboardCards() {
