@@ -3,6 +3,7 @@ import type { QueryClickActionsMode } from "../../types";
 import { ColumnFormattingAction } from "../actions/ColumnFormattingAction";
 import { HideColumnAction } from "../actions/HideColumnAction";
 import { DashboardClickAction } from "../actions/DashboardClickAction";
+import { NativeQueryClickFallback } from "../actions/NativeQueryClickFallback";
 
 export const DefaultMode: QueryClickActionsMode = {
   name: "default",
@@ -12,5 +13,6 @@ export const DefaultMode: QueryClickActionsMode = {
     ColumnFormattingAction,
     DashboardClickAction,
   ],
+  fallback: NativeQueryClickFallback,
   ModeFooter: TimeseriesChrome,
 };
